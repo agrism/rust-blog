@@ -7,7 +7,7 @@
         @fragment("frag")
         <div class="item-{{$show['id']}}" style="position: relative">
             <h3>{!! $show['title'] !!}</h3>
-            <div>{!! $show['content'] !!}</div>
+            <div>{!! nl2br($show['content']) !!}</div>
             <div style="position: absolute;right: 3px;top: 3px; cursor: pointer; color: red; font-size: 1rem;"
                  hx-get="/{{$show['id']}}/close"
                  hx-target=".item-{{$show['id']}}"

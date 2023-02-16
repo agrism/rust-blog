@@ -2,9 +2,34 @@
 
 namespace App\Services;
 
+use Illuminate\Support\Facades\Storage;
+
 class Generator
 {
+
     public static function get(?string $id = null): array
+    {
+        $data = json_decode(Storage::disk('local')->get('data.json'), true);
+
+        if(!$data){
+            return [];
+        }
+
+        if(!$id){
+            return is_array($data) ? $data : [];
+        }
+
+        foreach ($data as $item){
+            if(data_get($item, 'id') == $id){
+                return $item;
+            }
+        }
+
+        return [];
+    }
+
+
+    public static function get1(?string $id = null): array
     {
         $return = [
             [
