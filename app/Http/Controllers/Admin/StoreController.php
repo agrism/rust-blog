@@ -12,15 +12,7 @@ class StoreController extends Controller
 {
     public function __invoke(HtmxRequest $request)
     {
-        $data = Generator::get();
-
-        $data[] = [
-            'id' => count($data) + 1,
-            'title' => $request->post('title'),
-            'content' => $request->post('content'),
-        ];
-
-        Storage::disk('local')->put('data.json', json_encode($data));
+        Generator::create($request->post('title'), $request->post('content'));
 
         if ($request->isHtmxRequest()) {
             return HtmxResponse::addFragment('admin.show', 'frag');

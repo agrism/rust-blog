@@ -19,18 +19,27 @@
 
                     <textarea name="content" style="border: ridge 2px;width: 100%;height: 300px;">{!! $show['content'] ?? null !!}</textarea>
 
-                    <button>Update</button>
+                    <button class="button info">Update</button>
+                    @if($show['id'] ?? null)
+                    <div
+                        hx-get="/admin/{{$show['id']}}/close"
+                        hx-target=".item-{{$t}}"
+                        hx-swap="outerHTML"
+                        hx-replace-url="/admin"
+                        class="button alert">Close</div>
+                    @endif
+
                 </div>
 
-                @if($show['id'] ?? null)
-                <div style="position: absolute;right: 3px;top: 1px; cursor: pointer; color: red; font-size: 1rem;"
-                     hx-get="/admin/{{$show['id']}}/close"
-                     hx-target=".item-{{$t}}"
-                     hx-swap="outerHTML"
-                     hx-replace-url="/admin"
-                >[X]
-                </div>
-                @endif
+{{--                @if($show['id'] ?? null)--}}
+{{--                <div style="position: absolute;right: 3px;top: 1px; cursor: pointer; color: red; font-size: 1rem;"--}}
+{{--                     hx-get="/admin/{{$show['id']}}/close"--}}
+{{--                     hx-target=".item-{{$t}}"--}}
+{{--                     hx-swap="outerHTML"--}}
+{{--                     hx-replace-url="/admin"--}}
+{{--                >[X]--}}
+{{--                </div>--}}
+{{--                @endif--}}
             </form>
         </div>
 

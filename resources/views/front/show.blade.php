@@ -5,7 +5,7 @@
 
     <div class="content-in">
         @fragment("frag")
-        <div class="item-{{$show['id']}}" style="position: relative">
+        <div class="item-{{$show['id']}}" style="position: relative; padding-bottom: 20px">
             <h3>{!! $show['title'] !!}</h3>
             <div>{!! nl2br($show['content']) !!}</div>
             <div style="position: absolute;right: 3px;top: 3px; cursor: pointer; color: red; font-size: 1rem;"
