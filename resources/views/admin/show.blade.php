@@ -18,6 +18,8 @@
                     <textarea name="title" style="width: 100%; height: 50px;">{!! $show['title'] ?? null !!}</textarea>
 
                     <textarea name="content" style="border: ridge 2px;width: 100%;height: 300px;">{!! $show['content'] ?? null !!}</textarea>
+                    <input type="text" name="created_at" value="{{Carbon\Carbon::parse($show['created_at'] ?? time())->format("Y-m-d H:i:s")}}">
+                    <input type="text" name="updated_at" value="{{Carbon\Carbon::parse($show['updated_at'] ?? time())->format("Y-m-d H:i:s")}}">
 
                     <button class="button info">Update</button>
                     @if($show['id'] ?? null)

@@ -15,6 +15,7 @@ class IndexController extends Controller
         if($request->isHtmxRequest()){
             return HtmxResponse::addFragment('front.index', 'frag', compact('items'));
         }
+
         return view('front.index', compact('items'));
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -14,6 +15,10 @@ class Generator
         if(!$data){
             return [];
         }
+
+        usort($data, function ($a, $b){
+            return ($a['created_at'] ?? 0) < ($b['created_at'] ?? 0);
+        });
 
         if(!$id){
             return is_array($data) ? $data : [];
@@ -36,12 +41,14 @@ class Generator
             'id' => Str::slug($title),
             'title' => $title,
             'content' => $content,
+            'created_at' => now()->timestamp,
+            'updated_at' => now()->timestamp,
         ];
 
         Storage::disk('local')->put('data.json', json_encode($data));
     }
 
-    public static function update(string $id, string $title, string $content): string
+    public static function update(string $id, string $title, string $content, Carbon $createdAt = null): string
     {
         $data = Generator::get();
 
@@ -53,6 +60,8 @@ class Generator
                 'id' => $id = Str::slug($title),
                 'title' => $title,
                 'content' => $content,
+                'created_at' => $createdAt ? $createdAt->timestamp : data_get($dataItem, 'created_at', now()->timestamp),
+                'updated_at' => now()->timestamp,
             ];
             break;
         }

@@ -38,8 +38,40 @@
         }
         .content-in > div{
             border-bottom-style: dotted;
-            border-bottom: 1px solid green;
+            border-bottom: 1px dotted green;
         }
+
+        .close.icon {
+            color: #000;
+            position: absolute;
+            margin-top: 0;
+            margin-left: 0;
+            width: 21px;
+            height: 21px;
+        }
+
+        .close.icon:before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            width: 21px;
+            height: 1px;
+            background-color: currentColor;
+            -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+        }
+
+        .close.icon:after {
+            content: '';
+            position: absolute;
+            top: 10px;
+            width: 21px;
+            height: 1px;
+            background-color: currentColor;
+            -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+
     </style>
 </head>
 <body>
