@@ -11,11 +11,14 @@ class IndexController extends Controller
 {
     public function __invoke(HtmxRequest $request)
     {
-        $items = Generator::get();
+        $page = $request->input('page', 1);
+
+        $listValueObject = Generator::getItems(page: intval($page));
+
         if($request->isHtmxRequest()){
-            return HtmxResponse::addFragment('front.index', 'frag', compact('items'));
+            return HtmxResponse::addFragment('front.index', 'frag', compact('listValueObject'));
         }
 
-        return view('front.index', compact('items'));
+        return view('front.index', compact('listValueObject'));
     }
 }

@@ -1,7 +1,9 @@
 @fragment('frag-item')
-<div hx-get="/{{$content['id']}}"
+@php /** @var \App\ValueObjects\ListItemValueObject $listItemValueObject */ @endphp
+@php /** @var \App\ValueObjects\ListValueObject $listValueObject */ @endphp
+<div hx-get="/{{$listItemValueObject->id}}/?page={{$listValueObject->activePage}}"
      hx-swap="outerHTML"
      hx-push-url="true"
      style="padding: 5px 0; cursor: pointer"
->{!! $content['title'] !!}</div>
+>{!! $listItemValueObject->title !!}</div>
 @endfragment

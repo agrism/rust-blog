@@ -3,11 +3,15 @@
 @section('content')
 
     <div class="content-in">
-    @fragment('frag')
-        @foreach($items as $content)
-            @include('front.index-item')
+
+        @fragment('frag')
+        @include('front.paginator')
+        @php /** @var \App\ValueObjects\ListValueObject $listValueObject */ @endphp
+        @foreach($listValueObject->items as $listItemValueObject)
+            @include('front.index-item', ['listItemValueObject' => $listItemValueObject])
         @endforeach
-    @endfragment
+        @include('front.paginator')
+        @endfragment
     </div>
 
 @endsection

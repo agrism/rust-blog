@@ -11,19 +11,14 @@ class ShowController extends Controller
 {
     public function __invoke(HtmxRequest $request, string $id)
     {
-        $show = Generator::get($id);
+        $listItemValueObject = Generator::getItem($id);
 
         if($request->isHtmxRequest()){
-            return HtmxResponse::addFragment('front.show', 'frag', compact('show'));
+            return HtmxResponse::addFragment('front.show', 'frag', compact('listItemValueObject'));
         }
 
-        $items = Generator::get();
-        foreach ($items as &$item){
-            if($item['id'] == $id){
-                $item['active'] = true;
-            }
-        }
+        $listValueObject = Generator::getItems(intval($request->input('page')));
 
-        return view('front.show', compact('id', 'show', 'items'));
+        return view('front.show', compact('id', 'listItemValueObject', 'listValueObject'));
     }
 }

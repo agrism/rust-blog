@@ -72,6 +72,31 @@
             transform: rotate(45deg);
         }
 
+        .pagination{
+            margin: 10px 0;
+            text-align: center;
+        }
+        .pagination a {
+            color: black;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+            transition: background-color .3s;
+            border: 1px solid #ddd; /* Gray */
+            border-radius: 3px;
+            margin: 0 2px;
+            cursor: pointer;
+        }
+
+        .pagination a.active {
+            background-color: #6da270;
+            color: white;
+            border: 1px solid #6da270;
+        }
+        .pagination a:hover:not(.active) {background-color: #ddd;}
+        .pagination > div {
+            display: inline-block;
+        }
     </style>
 </head>
 <body>

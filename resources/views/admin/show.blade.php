@@ -48,7 +48,7 @@
         @endfragment
 
         @foreach($items as $content)
-            @if($content['id'] == ($show['id'] ?? null))
+            @if(($content['id'] ?? 'x') == ($show['id'] ?? 'y'))
 
             @else
                 @include('admin.index-item')
