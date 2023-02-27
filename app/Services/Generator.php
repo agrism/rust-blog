@@ -10,9 +10,15 @@ use Illuminate\Support\Str;
 
 class Generator
 {
-    const ITEMS_PER_PAGE = 4;
+    protected int $itemsPerPage = 10;
 
-    public static function get(?string $id = null): array
+    public function __construct()
+    {
+        $this->itemsPerPage = config('app.items-per-page');
+    }
+
+
+    public function get(?string $id = null): array
     {
         $data = json_decode(Storage::disk('local')->get('data.json'), true);
 
@@ -38,7 +44,7 @@ class Generator
     }
 
 
-    public static function getItems(?int $page = 1): ListValueObject|ListItemValueObject
+    public function getItems(?int $page = 1): ListValueObject|ListItemValueObject
     {
         $page = $page > 0 ? $page : 1;
 
@@ -49,7 +55,7 @@ class Generator
             return ($a['created_at'] ?? 0) < ($b['created_at'] ?? 0);
         });
 
-        $pageItems = array_slice($data, ($page - 1) * self::ITEMS_PER_PAGE, self::ITEMS_PER_PAGE);
+        $pageItems = array_slice($data, ($page - 1) * $this->itemsPerPage, $this->itemsPerPage);
 
         /** @var array<ListItemValueObject> $items */
         $items = [];
@@ -67,14 +73,14 @@ class Generator
             items: $items,
             totalItemsCount: count($data),
             activePage: $page,
-            nextPage: $page * self::ITEMS_PER_PAGE < count($data) ? $page + 1 : null,
+            nextPage: $page * $this->itemsPerPage < count($data) ? $page + 1 : null,
             prevPage: $page > 1 ? $page - 1 : null,
-            totalPages: ceil(count($data) / self::ITEMS_PER_PAGE),
+            totalPages: ceil(count($data) / $this->itemsPerPage),
             activePageItemsCount: count($pageItems)
         );
     }
 
-    public static function getItem(string $id): ?ListItemValueObject
+    public function getItem(string $id): ?ListItemValueObject
     {
         $data = json_decode(Storage::disk('local')->get('data.json'), true);
 
@@ -93,7 +99,7 @@ class Generator
         return null;
     }
 
-    public static function create(string $title, string $content): void
+    public function create(string $title, string $content): void
     {
         $data = Generator::get();
 
@@ -108,7 +114,7 @@ class Generator
         Storage::disk('local')->put('data.json', json_encode($data));
     }
 
-    public static function update(string $id, string $title, string $content, Carbon $createdAt = null): string
+    public function update(string $id, string $title, string $content, Carbon $createdAt = null): string
     {
         $data = Generator::get();
 

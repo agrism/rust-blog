@@ -143,6 +143,8 @@ return [
         // 'store'  => 'redis',
     ],
 
+    'items-per-page' => env('ITEMS_PER_PAGE', 5),
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers

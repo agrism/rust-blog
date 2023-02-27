@@ -11,20 +11,20 @@ use function App\Http\Controllers\Front\IndexController;
 
 class StoreController extends Controller
 {
-    public function __invoke(HtmxRequest $request)
+    public function __invoke(HtmxRequest $request, Generator $generator)
     {
-        Generator::create(
+        $generator->create(
             $request->post('title'),
             $request->post('content'),
         );
 
-        return (new IndexController())($request);
+        return (new IndexController())($request, $generator);
 
         if ($request->isHtmxRequest()) {
             return HtmxResponse::addFragment('admin.show', 'frag');
         }
 
-        $items = Generator::get();
+        $items = $generator->get();
 
         return view('admin.show', compact('items'));
     }

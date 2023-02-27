@@ -9,9 +9,9 @@ use Mauricius\LaravelHtmx\Http\HtmxRequest;
 
 class CloseController extends Controller
 {
-    public function __invoke(HtmxRequest $request, string $id)
+    public function __invoke(HtmxRequest $request, string $id, Generator $generator)
     {
-        $content = Generator::get($id);
+        $content = $generator->get($id);
 
         if($request->isHtmxRequest()){
             return HtmxResponse::addFragment('admin.index-item', 'frag-item', compact('content'));

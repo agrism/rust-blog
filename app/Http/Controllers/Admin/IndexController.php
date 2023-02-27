@@ -9,9 +9,9 @@ use Mauricius\LaravelHtmx\Http\HtmxRequest;
 
 class IndexController extends Controller
 {
-    public function __invoke(HtmxRequest $request)
+    public function __invoke(HtmxRequest $request, Generator $generator)
     {
-        $items = Generator::get();
+        $items = $generator->get();
         if($request->isHtmxRequest()){
             return HtmxResponse::addFragment('admin.index', 'frag', compact('items'));
         }

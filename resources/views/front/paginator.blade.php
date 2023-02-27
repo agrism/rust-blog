@@ -5,8 +5,17 @@
         @endif
         @foreach(range(1, $listValueObject->totalPages) as $page)
                 @if(($page > $listValueObject->activePage -3 &&  $page < $listValueObject->activePage +3) )
-                    <a data-hx-get="/?page={{$page}}" hx-target=".content-in" hx-push-url="true"
-                       class="{{ $listValueObject->activePage == $page ? 'active' : ''}}">{{$page}}</a>
+                    <a
+                        @if($listValueObject->activePage !== $page)
+                            data-hx-get="/?page={{$page}}"
+                            hx-target=".content-in"
+                            hx-push-url="true"
+                        @else
+                            style="cursor: default"
+                        @endif
+
+                       class="{{ $listValueObject->activePage == $page ? 'active' : ''}}"
+                    >{{$page}}</a>
                 @endif
         @endforeach
         @if($listValueObject->activePage !=$listValueObject->totalPages && $listValueObject->totalPages > 1)

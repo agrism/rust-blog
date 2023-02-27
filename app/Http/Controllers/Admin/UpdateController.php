@@ -10,16 +10,16 @@ use Mauricius\LaravelHtmx\Http\HtmxRequest;
 
 class UpdateController extends Controller
 {
-    public function __invoke(HtmxRequest $request, string $id)
+    public function __invoke(HtmxRequest $request, string $id, Generator $generator)
     {
-        $id = Generator::update(
+        $id = $generator->update(
             $id,
             $request->post('title'),
             $request->post('content'),
             $request->post('created_at') ? Carbon::parse($request->post('created_at')) : null,
         );
 
-        $content = Generator::get($id);
+        $content = $generator->get($id);
 
         if($request->isHtmxRequest()){
             return HtmxResponse::addFragment('admin.index-item', 'frag-item', compact('content'));

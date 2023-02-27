@@ -10,9 +10,9 @@ use Mauricius\LaravelHtmx\Http\HtmxRequest;
 
 class CloseController extends Controller
 {
-    public function __invoke(HtmxRequest $request, string $id)
+    public function __invoke(HtmxRequest $request, string $id, Generator $generator)
     {
-        $listItemValueObject = Generator::getItem($id);
+        $listItemValueObject = $generator->getItem($id);
 
         $listValueObject = new ListValueObject(
             activePage: $request->input('page')

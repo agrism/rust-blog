@@ -9,11 +9,11 @@ use Mauricius\LaravelHtmx\Facades\HtmxResponse;
 
 class IndexController extends Controller
 {
-    public function __invoke(HtmxRequest $request)
+    public function __invoke(HtmxRequest $request, Generator $generator)
     {
         $page = $request->input('page', 1);
 
-        $listValueObject = Generator::getItems(page: intval($page));
+        $listValueObject = $generator->getItems(page: intval($page));
 
         if($request->isHtmxRequest()){
             return HtmxResponse::addFragment('front.index', 'frag', compact('listValueObject'));

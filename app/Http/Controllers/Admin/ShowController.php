@@ -9,15 +9,15 @@ use Mauricius\LaravelHtmx\Http\HtmxRequest;
 
 class ShowController extends Controller
 {
-    public function __invoke(HtmxRequest $request, string $id)
+    public function __invoke(HtmxRequest $request, string $id, Generator $generator)
     {
-        $show = Generator::get($id);
+        $show = $generator->get($id);
 
         if($request->isHtmxRequest()){
             return HtmxResponse::addFragment('admin.show', 'frag', compact('show'));
         }
 
-        $items = Generator::get();
+        $items = $generator->get();
         foreach ($items as &$item){
             if($item['id'] == $id){
                 $item['active'] = true;
