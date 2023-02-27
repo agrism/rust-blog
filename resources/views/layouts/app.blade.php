@@ -97,6 +97,26 @@
         .pagination > div {
             display: inline-block;
         }
+
+        .my-indicator{
+            z-index: 1000;
+            width: 0;
+            height: 5px;
+            background:  red;
+            position: fixed;
+            top: 0;
+            left: 0;
+
+        }
+        .htmx-request .my-indicator{
+            width: 100%;
+            transition: width 2s;
+        }
+        .htmx-request.my-indicator{
+            width: 98%;
+            transition: width 2s;
+        }
+
     </style>
 </head>
 <body>
@@ -111,6 +131,7 @@
 
 </div>
 <div class="container" style="padding: 10px 30px;">
+    <div class="loader my-indicator"></div>
     @yield('content')
 </div>
 </body>

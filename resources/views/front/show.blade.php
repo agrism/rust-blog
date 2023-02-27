@@ -18,6 +18,7 @@
                  hx-get="/{{$listItemValueObject->id}}/close/?page={{$listValueObject->activePage}}"
                  hx-target=".item-{{$listItemValueObject->id}}"
                  hx-swap="outerHTML"
+                 hx-indicator=".loader"
                  hx-replace-url="/?page={{$listValueObject->activePage}}"
                  class="close icon"
             >
@@ -27,6 +28,7 @@
                  hx-get="/{{$listItemValueObject->id}}/close/?page={{$listValueObject->activePage}}"
                  hx-target=".item-{{$listItemValueObject->id}}"
                  hx-swap="outerHTML"
+                 hx-indicator=".loader"
                  hx-replace-url="/?page={{$listValueObject->activePage}}"
                  class="close icon"
             >
