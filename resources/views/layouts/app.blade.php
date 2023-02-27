@@ -13,13 +13,13 @@
             border-radius: 3px;
             border: none;
             color: white;
+            cursor: pointer;
+            display: inline-block;
             font-family : Tahoma sans-serif;
             padding: 5px 10px;
             text-align: center;
             text-decoration: none;
-            display: inline-block;
             font-size: 14px;
-            cursor: pointer;
         }
         .primary {
             background-color: #cbc9c9; color: black;
@@ -37,39 +37,39 @@
             background-color: #e8c00e;
         }
         .content-in > div{
-            border-bottom-style: dotted;
             border-bottom: 1px dotted green;
+            border-bottom-style: dotted;
         }
 
         .close.icon {
             color: #000;
-            position: absolute;
-            margin-top: 0;
-            margin-left: 0;
-            width: 21px;
             height: 21px;
+            margin-left: 0;
+            margin-top: 0;
+            width: 21px;
+            position: absolute;
         }
 
         .close.icon:before {
+            background-color: currentColor;
             content: '';
+            height: 1px;
             position: absolute;
             top: 10px;
             width: 21px;
-            height: 1px;
-            background-color: currentColor;
-            -webkit-transform: rotate(-45deg);
             transform: rotate(-45deg);
+            -webkit-transform: rotate(-45deg);
         }
 
         .close.icon:after {
+            background-color: currentColor;
             content: '';
+            height: 1px;
             position: absolute;
             top: 10px;
-            width: 21px;
-            height: 1px;
-            background-color: currentColor;
-            -webkit-transform: rotate(45deg);
             transform: rotate(45deg);
+            width: 21px;
+            -webkit-transform: rotate(45deg);
         }
 
         .pagination{
@@ -77,21 +77,21 @@
             text-align: center;
         }
         .pagination a {
+            border: 1px solid #ddd; /* Gray */
+            border-radius: 3px;
             color: black;
+            cursor: pointer;
             float: left;
+            margin: 0 2px;
             padding: 8px 16px;
             text-decoration: none;
             transition: background-color .3s;
-            border: 1px solid #ddd; /* Gray */
-            border-radius: 3px;
-            margin: 0 2px;
-            cursor: pointer;
         }
 
         .pagination a.active {
             background-color: #6da270;
-            color: white;
             border: 1px solid #6da270;
+            color: white;
         }
         .pagination a:hover:not(.active) {background-color: #ddd;}
         .pagination > div {
@@ -99,22 +99,22 @@
         }
 
         .my-indicator{
-            z-index: 1000;
-            width: 0;
-            height: 5px;
             background:  red;
+            height: 5px;
+            left: 0;
             position: fixed;
             top: 0;
-            left: 0;
+            width: 0;
+            z-index: 1000;
 
         }
         .htmx-request .my-indicator{
-            width: 100%;
             transition: width 2s;
+            width: 100%;
         }
         .htmx-request.my-indicator{
-            width: 98%;
             transition: width 2s;
+            width: 98%;
         }
 
     </style>
