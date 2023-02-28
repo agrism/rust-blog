@@ -88,12 +88,26 @@
             transition: background-color .3s;
         }
 
+        .pagination a.ignore {
+            border: 0 solid white;
+        }
         .pagination a.active {
             background-color: #6da270;
             border: 1px solid #6da270;
             color: white;
         }
-        .pagination a:hover:not(.active) {background-color: #ddd;}
+        .pagination a.active.ignore {
+            background-color: white;
+            border: 0 solid white;
+            color: white;
+        }
+        .pagination a:hover:not(.active) {
+            background-color: #ddd;
+        }
+        .pagination a:hover:not(.active).ignore {
+            background-color: white;
+            cursor: default;
+        }
         .pagination > div {
             display: inline-block;
         }
